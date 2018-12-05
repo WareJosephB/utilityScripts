@@ -1,0 +1,61 @@
+version: '3'
+services:
+  activemq:
+    container_name: activemq
+    image: bobcrutchley/activemq
+  mongodb:
+    container_name: mongodb
+    image: mongo
+    restart: always
+  SECURITY:
+    container_name: SECURITY
+    build:
+      context: SECURITY
+      args:
+      - artifact_id=SECURITY
+      - version=0.0.1-SNAPSHOT
+    ports:
+    - 8083:8080
+  TRAINEEAPI:
+    container_name: TRAINEEAPI
+    build:
+      context: TRAINEEAPI
+      args:
+      - artifact_id=TRAINEEAPI
+      - version=0.0.1-SNAPSHOT
+    ports:
+    - 8082:8080
+  TRAINERAPI:
+    container_name: TRAINERAPI
+    build:
+      context: TRAINERAPI
+      args:
+      - artifact_id=TRAINERAPI
+      - version=0.0.1-SNAPSHOT
+    ports:
+    - 8083:8080
+  TRAINMANAGEAPI:
+    container_name: TRAINMANAGEAPI
+    build:
+      context: TRAINMANAGEAPI
+      args:
+      - artifact_id=TRAINMANAGEAPI
+      - version=0.0.1-SNAPSHOT
+    ports:
+    - 8084:8080
+  CONSUMER1:
+    container_name: CONSUMER1
+    build:
+      context: CONSUMER1
+      args:
+      - artifact_id=CONSUMER1
+      - version=0.0.1-SNAPSHOT
+  FRONT:
+    container_name: FRONT
+    build:
+      context: FRONT
+      args:
+      - artifact_id=FRONT
+      - version=1.0.0
+    ports:
+    - 3000:3000
